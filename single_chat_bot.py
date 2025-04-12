@@ -6,8 +6,6 @@ from langchain.prompts import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate
 )
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
 from langchain.chains import ConversationChain
 from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
