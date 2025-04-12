@@ -1,0 +1,43 @@
+Problem Statement
+---------
+    Use LLM's to create a tool that generates fresh , on demand conversations for language learners
+    Users can observe and learn from two AI chatbots engaged in either a user defined conversation or a debate
+    Goal is to create a unique language-learning app powered by two converssational AI or chatbots.
+    Chatbots interact with each other creating realistic dialouges in the target language.
+    Users should have flexibility to customize thier learning experience according to thier needs.
+    Users should be able to adjust
+        - Target language:
+            Users can choose the language they wish to learn.
+        - Learning Mode:
+            Users can select the style of conversation between the chatbots.
+            ex. - Conversation mode : with roles(customer and customer support personal) , actions (enquiry about a product) and scenario (in an office) for chatbots
+                  Debate mode : users input a debate topic.
+            The interface of app must be responsive and dynamically adjustable based on learning mode selected by user.
+        - Session Length
+            Defines the duration of each conversation / debate.
+        - Proficiency Level
+            Tailors the complexity of the chaatbot conversation to the user's language skill level.
+Tech Stack
+---------
+    Langchain, LLM, gTTS, streamlit
+
+Prerequisite Tools
+---------
+    LangChain:
+        Its a framework dedicated to stramlining the developement of LLM powered applications.
+        It provides -  
+            - interactions with LLM model providers.
+            - orchestrating data connections.
+            - maintaining memory of historical interaction
+            - defining intricate task pipelines.
+        Chains in Langchain -
+            - Allows us to combine multiple components together to create a single , coherent application.
+            - ex LLMChain - first formats the prompt template using user provided input key values and then passes the formatted instructions to the LLM and returns the LLM output.
+            - other chain examples - RetrievalQAChain for Q&A over documents, SummarizationChain - For summarizing multiple docs, ConversationChain
+
+    ConversationChain:
+        It provides interactive conversations by providing a framework for excahnging messages and storing conversation history.
+        # Create conversation chain
+            conversation = ConversationChain(memory, prompt, llm)
+            conversation.predict(input = "user input text"), will return the LLM's response for the specific input
+            we can cll the .predict multiple times and the message history is automatically recorded under the hood.
