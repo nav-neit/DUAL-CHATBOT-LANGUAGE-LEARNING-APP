@@ -32,6 +32,42 @@ AVATAR_SEED = [123, 42]
 ## define backbone LLM
 engine = 'GroqCloud'
 
+## helper fucntion
+def show_messages(mesg_1, mesg_2, message_counter, time_delay, language, batch = False, audio = False, translation = False):
+    """
+    Display conversation exchanges, This helper function supports displaying original texts, translated texts and audio speech.
+    
+    Output: 
+    message_counter: updated counter for ID key
+    """
+    
+    for i, mesg in enumerate([mesg_1, mesg_2]):
+        ## show original exchange
+        message(f"{mesg['content']}", is_user=i==1, avatar_style="bottts", seed = AVATAR_SEED[i], key = str(message_counter))
+        message_counter +=1
+
+        ## mimic time interval between conversations
+        ## (this time delay appears when generating the conversation script for the first time)
+        if not batch:
+            time.sleep(time_delay)
+        ## show translated message
+        if translation:
+            ## is user defines message should be left / right alighed
+            message(f"{mesg['translation']}", is_user=i==1, avatar_style="bottts", seed=AVATAR_SEED[i], key = str(message_counter))
+            message_counter +=1
+
+        ## append the audio to the exchange
+        if audio:
+            ## gtts library to create audio speech in the target language based on the generated script.
+            ## Library has a limitation - t can have only one voice
+            tts = gTTS(text = mesg['content'], lang=AUDIO_SPEECH[language])
+            sound_file = BytesIO()
+            tts.write_to_fp(sound_file)
+            st.audio(sound_file)
+        
+    return message_counter
+
+
 ## basic ui layout with options for user to select
 
 # set the title at the top
@@ -107,7 +143,7 @@ if 'audio_flag' not in st.session_state:
     st.session_state["audio_flag"] = False
     ## indicates if its a audio
 
-if 'mmessage_counter' not in st.session_state:
+if 'message_counter' not in st.session_state:
     st.session_state["message_counter"] = 0
     ## adds one whenever a message from chatbot is displayed
     ## also to add message ID with this counter as streamlit requires that each UI components to have a unique ID                      
@@ -148,13 +184,13 @@ if 'dual_chatbots' not in st.session_state:
                 
                 new_count = show_messages(mesg_1, mesg_2, 
                                           st.session_state["message_counter"],
-                                          time_delay = time_delay, batch = False,
+                                          time_delay = time_delay, language=language, batch = False,
                                           audio = False, translation = False)
                 st.session_state["message_counter"] = new_count
 
                 ## update session state
                 st.session_state.bot1_mesg.append(mesg_1)
-                st.session_state.bot1_mesg.append(mesg_2)
+                st.session_state.bot2_mesg.append(mesg_2)
 
 ## upon running the script for first time , the two chatbots will chat back and forth given number of times and all messages get stored in session state
 ## show_message is a helper function designed to be the sole interface to style the message display
@@ -181,7 +217,6 @@ if 'dual_chatbots' in st.session_state:
     mesg1_list = st.session_state.bot1_mesg
     mesg2_list = st.session_state.bot2_mesg
     dual_chatbots = st.session_state['dual_chatbots']
-    dual_chatbots = st.session_state['dual_chatbots']
 
     # control message appearance
     if st.session_state['first_time_exec']:
@@ -198,60 +233,26 @@ if 'dual_chatbots' in st.session_state:
                 new_count = show_messages(mesg_1, mesg_2,
                                           st.session_state["message_counter"],
                                           time_delay = time_delay,
+                                          language=language,
                                           batch = st.session_state['batch_flag'],
                                           audio = st.session_state['audio_flag'],
                                           translation = st.session_state['translate_flag']
                                           )
                 st.session_state["message_counter"] = new_count
 
-## Summary of key learning points in Ui
-summary_expander = st.expander('Key Learning Points')
-scripts = []
-for mesg_1, mesg_2 in zip(mesg1_list, mesg2_list):
-    for i , mesg in enumerate([mesg_1, mesg_2]):
-        scripts.append(mesg['role'] + ': ' + mesg['content'])
+    ## Summary of key learning points in Ui
+    summary_expander = st.expander('Key Learning Points')
+    scripts = []
+    for mesg_1, mesg_2 in zip(mesg1_list, mesg2_list):
+        for i , mesg in enumerate([mesg_1, mesg_2]):
+            scripts.append(mesg['role'] + ': ' + mesg['content'])
 
-## compile summary
-if "summary" not in st.session_state:
-    summary = dual_chatbots.summary(scripts)
-    st.session_state["summary"] = summary
-else:
-    summary = st.session_state["summary"]
-with summary_expander:
-    st.markdown(f"**Here is the learning summary: **")
-    st.write(summary)
-
-## helper fucntion
-def show_messages(mesg_1, mesg_2, message_counter, time_delay, batch = False, audio = False, translation = False):
-    """
-    Display conversation exchanges, This helper function supports displaying original texts, translated texts and audio speech.
-    
-    Output: 
-    message_counter: updated counter for ID key
-    """
-    
-    for i, mesg in enumerate([mesg_1, mesg_2]):
-        ## show original exchange
-        message(f"{mesg['content']}", is_user=i==1, avatar_style="bottts", seed = AVATAR_SEED[i], key = message_counter)
-        message_counter +=1
-
-        ## mimic time interval between conversations
-        ## (this time delay appears when generating the conversation script for the first time)
-        if not batch:
-            time.sleep(time_delay)
-        ## show translated message
-        if translation:
-            ## is user defines message should be left / right alighed
-            message(f"{mesg['translation']}", is_user=i==1, avatar_style="bottts", seed=AVATAR_SEED[i], key=message_counter)
-            message_counter +=1
-
-        ## append the audio to the exchange
-        if audio:
-            ## gtts library to create audio speech in the target language based on the generated script.
-            ## Library has a limitation - t can have only one voice
-            tts = gTTS(text = mesg['content'], lang=AUDIO_SPEECH[language])
-            sound_file = BytesIO()
-            tts.write_to_fp(sound_file)
-            st.audio(sound_file)
-        
-    return message_counter
+    ## compile summary
+    if "summary" not in st.session_state:
+        summary = dual_chatbots.summary(scripts)
+        st.session_state["summary"] = summary
+    else:
+        summary = st.session_state["summary"]
+    with summary_expander:
+        st.markdown(f"**Here is the learning summary: **")
+        st.write(summary)

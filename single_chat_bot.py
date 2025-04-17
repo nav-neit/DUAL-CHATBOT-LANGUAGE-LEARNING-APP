@@ -174,3 +174,5 @@ class Chatbot:
         else:
             ## current bot is second one to speak
             prompt += f"Wait for the {self.oppo_role['name']}'s statement"
+
+        return prompt
