@@ -47,9 +47,9 @@ conda activate ./venv
 pip install -r requirements.txt
 ```
 
-### 4. Set Up Environment Variables
+### 📥 4. Set Up Environment Variables
 
-Create a `.env` file in the root directory and add your Groq API key like this:
+Create a `.env` file in the root directory and add your Groq API key
 
 ```env
 GROQ_API_KEY=your-groq-api-key-here
@@ -57,10 +57,35 @@ GROQ_API_KEY=your-groq-api-key-here
 You can get a key from https://console.groq.com.
 
 
-### 5. Run the App
+### 📥 5. Run the App
 To start the application , run the folllowing command
 ```bash
 streamlit run app.py
 ```
 This will open the app in your default web browser
 If not, navigate manually to http://localhost:8501
+
+## 🧠 Tech Stack
+
+| Layer             | Technology                            |
+|------------------|----------------------------------------|
+| 👨‍💻 Frontend     | [Streamlit](https://streamlit.io)        |
+| 🧠 LLM API        | [Groq (LLama3)](https://groq.com)       |
+| ⚙️ AI Framework   | [LangChain](https://www.langchain.com) |
+| 🗣️ Text-to-Speech | [gTTS](https://pypi.org/project/gTTS/) |
+| 💾 Memory Buffer  | `ConversationBufferMemory`             |
+| 🔐 Env Handling   | `python-dotenv`                        |
+
+---
+
+## 📁 Project Structure
+
+```plaintext
+dual-chatbot-language-app/
+├── app.py                 # Main Streamlit app
+├── dual_chat_bot.py       # Dual bot orchestration logic
+├── single_chat_bot.py     # Abstraction for single chatbot logic
+├── .env                   # Environment variables (e.g., GROQ_API_KEY)
+├── requirements.txt       # Project dependencies
+├── screenshots/           # Optional folder for UI images
+└── README.md              # Project documentation
