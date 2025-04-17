@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
 if not api_key:
-    print("GROQ API KEY Environment variable not set")
+    raise ValueError("GROQ_API_KEY environment variable not set. Please set the API key.")
 
 
 ## A Dual Chat Bot class to let two chatbots interact with each ohter

@@ -75,7 +75,7 @@ st.title('Language Learning App 🌍📖🎓')
 
 # set the description of the app
 st.markdown("""
-This app generates conversation or debate scripts to aid in language learning 🎯 
+This app generates conversation or debate scripts to aid in language learning 🎯 \n
 Choose your desired settings and press 'Generate to start'  🚀
 """
 )
@@ -111,6 +111,13 @@ session_length = st.sidebar.selectbox('Session Length ⏰', SESSION_LENGHTS)
 proficiency_level = st.sidebar.selectbox('Proficiency Level 🏆', PROFICIENCY_LEVELS)
 ## here time_delay is used for specifying the waiting time btw displaying two consecutive messages
 ## beneficial for user to allow enough time to read the generatred messages before the next exhange appears
+
+# Add reset button to clear session state
+if st.sidebar.button("🔄 Reset Session"):
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.rerun()
+
 
 # Define containers and columns
 conversation_container = st.container()

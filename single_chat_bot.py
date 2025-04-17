@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
 if not api_key:
-    print("GROQ API KEY Environment variable not set")
+    raise ValueError("GROQ_API_KEY environment variable not set. Please set the API key.")
 
 ## we will first define a single chat bot class which can be later integrated into a dual-chatbot class
 ## this chat bot class enable the management of an individual chatbot with user-specified LLM as its backbone
