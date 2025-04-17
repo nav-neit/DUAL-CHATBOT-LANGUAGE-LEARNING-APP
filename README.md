@@ -89,7 +89,7 @@ dual-chatbot-language-app/
 ├── requirements.txt       # Project dependencies
 ├── screenshots/           # Optional folder for UI images
 └── README.md              # Project documentation
-
+```
 ---
 
 ## 🙏 Acknowledgements & Inspiration
