@@ -8,7 +8,7 @@ An interactive Streamlit web app that simulates intelligent, real-time conversat
 
 | Conversation Mode | Summary Output |
 |-------------------|----------------|
-| ![Chat UI](screenshots/chat_ui.png) | ![Summary UI](screenshots/summary_ui.png) |
+| ![Chat UI](screenshots/chat_ui.jpg) | ![Summary UI](screenshots/summary_ui.jpg) |
 
 
 ---
