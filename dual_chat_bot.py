@@ -180,7 +180,7 @@ class DualChatbot:
         summary_chain = LLMChain(llm = self.summary_bot, prompt = prompt)
         summary = summary_chain.predict(
             src_lang = self.language,
-            proficency = self.proficiency_level,
+            proficiency = self.proficiency_level,
             script = script
         )
 
