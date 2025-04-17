@@ -10,6 +10,17 @@ An interactive Streamlit web app that simulates intelligent, real-time conversat
 |-------------------|----------------|
 | ![Chat UI](screenshots/chat_ui.jpg) | ![Summary UI](screenshots/summary_ui.jpg) |
 
+---
+
+## 📚 Table of Contents
+
+- [📚 Features](#-features)
+- [🛠 Setup Instructions](#-setup-instructions)
+- [🚀 Run the App](#-run-the-app)
+- [🧠 Tech Stack](#-tech-stack)
+- [📁 Project Structure](#-project-structure)
+- [🙏 Acknowledgements & Inspiration](#-acknowledgements--inspiration)
+- [🛡️ License](#️-license)
 
 ---
 
@@ -31,7 +42,7 @@ An interactive Streamlit web app that simulates intelligent, real-time conversat
 ### 📥 1. Clone the Repository
 
 ```bash
-git clone https://github.com/nav-neit/dual-chatbot-language-app.git
+git clone https://github.com/nav-neit/DUAL-CHATBOT-LANGUAGE-LEARNING-APP.git
 cd dual-chatbot-language-app
 ```
 
@@ -115,3 +126,7 @@ This repository adapts and builds upon the original project with the following u
 Special thanks to Dr. Shuai Guo for the original concept and thoughtful design.
 
 ---
+
+## 🛡️ License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
