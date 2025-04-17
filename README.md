@@ -33,21 +33,21 @@ An interactive Streamlit web app that simulates intelligent, real-time conversat
 ```bash
 git clone https://github.com/your-username/dual-chatbot-language-app.git
 cd dual-chatbot-language-app
+```
 
 ### 📥 2. Create and Activate a Virtual Environment
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+conda create --prefix ./venv python==3.9
+conda activate ./venv
+```
 
 ### 📥 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
+```
 
 ### 📥 4. Set Up Environment Variables
-```bash
-create a .env file in the root directory and add your Groq API key:
-GROQ_API_KEY=your-groq-api-key-here
-You can get a free key from https://console.groq.com
+
 
 
