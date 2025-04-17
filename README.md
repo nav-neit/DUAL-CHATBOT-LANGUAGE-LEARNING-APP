@@ -16,7 +16,6 @@ An interactive Streamlit web app that simulates intelligent, real-time conversat
 
 - [📚 Features](#-features)
 - [🛠 Setup Instructions](#-setup-instructions)
-- [🚀 Run the App](#-run-the-app)
 - [🧠 Tech Stack](#-tech-stack)
 - [📁 Project Structure](#-project-structure)
 - [🙏 Acknowledgements & Inspiration](#-acknowledgements--inspiration)
