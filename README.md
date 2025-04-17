@@ -89,3 +89,29 @@ dual-chatbot-language-app/
 ├── requirements.txt       # Project dependencies
 ├── screenshots/           # Optional folder for UI images
 └── README.md              # Project documentation
+
+---
+
+## 🙏 Acknowledgements & Inspiration
+
+This project was **heavily inspired by** the excellent work of [Dr. Shuai Guo](https://medium.com/@shuaiguo), whose original Medium article and GitHub repository laid the foundation for this idea:
+
+- 📄 **Original Article**: [Building an AI-Powered Language Learning App](https://medium.com/data-science/building-an-ai-powered-language-learning-app-learning-from-two-ai-chatting-6db7f9b0d7cd)
+- 💻 **Original Repo**: [ShuaiGuo16/language_learning_app](https://github.com/ShuaiGuo16/language_learning_app)
+- 👨‍🎓 [Google Scholar Profile](https://scholar.google.com/citations?user=F8A2PUQAAAAJ&hl=en)
+
+---
+
+## 🔧 Enhancements in This Version
+
+This repository adapts and builds upon the original project with the following updates:
+
+- 🔁 Switched the LLM backend from OpenAI to **LLaMA3 via Groq** (open-source integration)
+- 🛠️ Fixed bugs related to session state and variable access
+- 🎨 Improved **UI structure** using Streamlit best practices
+- 🔄 Added **Reset Session** button and toggle controls
+- 🧠 Added refinements to **summary rendering**, message translation, and user experience
+
+Special thanks to Dr. Shuai Guo for the original concept and thoughtful design.
+
+---
